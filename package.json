@@ -1,10 +1,14 @@
 {
-  "name": "mx-puppet-bridge",
+  "name": "@matrix/mx-puppet-bridge",
   "version": "0.1.6",
   "description": "Matrix Puppeting Bridge library",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sorunome/mx-puppet-bridge"
+    "url": "git+ssh://git.touhou.fm/matrix/mx-puppet-bridge"
+  },
+  "publishConfig": {
+    "access": "public",
+    "@matrix:registry": "https://git.touhou.fm/api/v4/projects/169/packages/npm/"
   },
   "bugs": {
     "url": "https://github.com/Sorunome/mx-puppet-bridge/issues"
@@ -16,7 +20,8 @@
     "build": "tsc",
     "test": "npm run-script build && mocha",
     "coverage": "npm run-script build && nyc mocha",
-    "docs": "typedoc --options ./typedoc.json --tsconfig ./tsconfig.json"
+    "docs": "typedoc --options ./typedoc.json --tsconfig ./tsconfig.json",
+    "semantic-release": "semantic-release"
   },
   "author": "Sorunome",
   "dependencies": {
@@ -41,6 +46,9 @@
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/gitlab": "^7.0.4",
+    "@semantic-release/npm": "^8.0.3",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.30",
@@ -50,6 +58,7 @@
     "mocha": "^7.1.1",
     "nyc": "^15.0.0",
     "proxyquire": "^2.1.3",
+    "semantic-release": "^18.0.0",
     "source-map-support": "^0.5.16",
     "ts-node": "^8.6.2",
     "tslint": "^5.20.1",

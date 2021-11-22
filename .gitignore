@@ -6,3 +6,4 @@ registration.yaml
 .nyc_output
 *.log*
 *-audit.json
+.npm
