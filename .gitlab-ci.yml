@@ -23,6 +23,8 @@ stages:
   - release
 
 publish:
+  extends:
+    - default
   stage: release
   script:
     - npm publish
