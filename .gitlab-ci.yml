@@ -20,11 +20,23 @@ variables:
   NPM_TOKEN: ${CI_JOB_TOKEN}
 
 stages:
+  - build
   - release
+
+build:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - lib
 
 publish:
   stage: release
+  needs:
+    - job: build
+      artifacts: true
   script:
-    - npm run semantic-release
+    - npm publish
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
