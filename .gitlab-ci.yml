@@ -1,12 +1,13 @@
 default:
   image: node:latest
   before_script:
-    - yarn install --cache-folder .npm --frozen-lockfile
+    - npm install --cache-folder .npm --frozen-lockfile
     - |
       {
         echo "@${CI_PROJECT_ROOT_NAMESPACE}:registry=${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
         echo "${CI_API_V4_URL#https?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}"
       } | tee --append .npmrc
+    - cat .npmrc
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
@@ -23,8 +24,6 @@ stages:
   - release
 
 publish:
-  extends:
-    - default
   stage: release
   script:
     - npm publish
